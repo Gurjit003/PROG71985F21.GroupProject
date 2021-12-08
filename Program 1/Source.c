@@ -34,7 +34,8 @@ int main(void)
     }
     case 'b':
     {
-        printf("Feature still not added\n"); 
+        printf("just a test to see if it will work\n");
+        showalltasks();
 
         break;
     }
@@ -85,8 +86,8 @@ void addNewTask()
     //char* lastName = malloc(sizeof(char) * (bookingStatusLength + 1));
 
     printf("\nEnter the task information you would like to add:\n"); 
-    fgets(newTask, sizeof(newTask), stdin);
-    //scanf("%s", newTask, NEWTASKLENGTH); 
+    //fgets(newTask, sizeof(newTask), stdin);
+    scanf("%s", newTask, NEWTASKLENGTH); 
     //while ((newTask = getchar()) != '\n' && newTask != EOF);
     /* while (fgets(newTask, sizeof(newTask), stdin) != EOF)
     {
@@ -100,4 +101,24 @@ void addNewTask()
     fclose(fp); 
 
     return 0;
+}
+
+void showalltasks()
+{
+    FILE* fp;
+    int ch;
+    unsigned long count = 0;
+
+    if ((fp = fopen("tasksSaveFile.txt", "r")) == NULL)
+    {
+        printf("Can't open file\n");
+        exit(EXIT_FAILURE);
+    }
+
+    while ((ch = getc(fp)) != EOF)
+    {
+        putc(ch, stdout);
+        count++;
+    }
+    fclose(fp);
 }
