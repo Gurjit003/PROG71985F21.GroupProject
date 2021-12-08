@@ -42,7 +42,27 @@ int main(void)
 
         break;
     }
+    case 'c':
+    {
+        printf("feauture hasn't been added yet\n");
+        break;
+    }
+    case 'd':
+    {
+        displayspecifictask();
+        break;
+    }
+    case 'e':
+    {
+        printf("feauture hasn't been added yet\n");
+        break;
+    }
     case 'f':
+    {
+        showalltasks();
+        break;
+    }
+    case 'g':
     {
         printf("\nBYE!\n");
 
@@ -66,7 +86,11 @@ void displayMenu()
     \rTo choose an option, enter its letter label:\n\
     \ra) To add a new task\n\
     \rb) Delete a task\n\
-    \rf) Quit\n"); 
+    \rc) \n\
+    \rd) Display specific task\n\
+    \re) \n\
+    \rf) Display all task\n\
+    \rg) Quit\n"); 
 }
 
 
@@ -126,6 +150,7 @@ void showalltasks()
     }
     fclose(fp);
 }
+
 void deletetask()
 {
     FILE* fp, * fptemp;
@@ -165,4 +190,41 @@ void deletetask()
 
     remove("Tasks.txt");
     rename(tempfile, "Tasks.txt");
+}
+
+void displayspecifictask()
+{
+    int line; 
+
+    printf("what like of task will you like to be shown: ");
+    scanf_s("%d", &line);
+
+    FILE* fp = fopen("Tasks.txt", "r");
+    if (fp == NULL)
+    {
+        perror("Unable to open file");
+        exit(1);
+    }
+
+    bool keep_reading = true;
+    int current_line = 1;
+    char ch[NEWTASKLENGTH];
+
+    do
+    {
+        fgets(ch, NEWTASKLENGTH, fp);
+        if (feof(fp))
+        {
+            keep_reading = false;
+        }
+        else if (current_line == line)
+        {
+            printf("%s", ch);
+        }
+        current_line++;
+    } while (keep_reading);
+
+
+    fclose(fp);
+  
 }
