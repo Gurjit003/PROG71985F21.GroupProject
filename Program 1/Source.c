@@ -65,7 +65,7 @@ void displayMenu()
     \r***************\n\n\
     \rTo choose an option, enter its letter label:\n\
     \ra) To add a new task\n\
-    \rb) \n\
+    \rb) Delete a task\n\
     \rf) Quit\n"); 
 }
 
