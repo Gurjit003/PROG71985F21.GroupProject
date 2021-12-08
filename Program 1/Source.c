@@ -3,12 +3,15 @@
 //Gurjit Singh and David Oladimeji - December 7 - 2021 
 
 
+//original file: tasksSaveFile.txt
+
 #define _CRT_SECURE_NO_WARNINGS 
 
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <string.h> 
 #include "Source.h" 
+#include <stdbool.h> 
 
 
 #define NUMOFTASKS 10 
@@ -34,8 +37,8 @@ int main(void)
     }
     case 'b':
     {
-        printf("just a test to see if it will work\n");
         showalltasks();
+        deletetask();
 
         break;
     }
@@ -71,7 +74,7 @@ void addNewTask()
 {
     TASKS tasksList; 
 
-    FILE* fp = fopen("tasksSaveFile.txt", "a");
+    FILE* fp = fopen("Tasks.txt", "a");
 
     if (fp == NULL)
     {
@@ -96,6 +99,7 @@ void addNewTask()
     tasksList.newTask = newTask; 
 
     fprintf(fp, "%s", tasksList.newTask); 
+    fprintf(fp, "\n"); 
     printf("\nTask added\n"); 
 
     fclose(fp); 
@@ -109,7 +113,7 @@ void showalltasks()
     int ch;
     unsigned long count = 0;
 
-    if ((fp = fopen("tasksSaveFile.txt", "r")) == NULL)
+    if ((fp = fopen("Tasks.txt", "r")) == NULL)
     {
         printf("Can't open file\n");
         exit(EXIT_FAILURE);
@@ -121,4 +125,44 @@ void showalltasks()
         count++;
     }
     fclose(fp);
+}
+void deletetask()
+{
+    FILE* fp, * fptemp;
+    char ch[NEWTASKLENGTH];
+    int delete = 0;
+    char tempfile[NEWTASKLENGTH];
+
+    strcpy(tempfile, "temp____");
+    strcat(tempfile, "Tasks_txt");
+
+    printf("\n");
+    printf("which line would you like to delete: ");
+    scanf_s("%d", &delete);
+
+    fp = fopen("Tasks.txt", "r");
+    fptemp = fopen(tempfile, "w");
+
+    bool keep_reading = true;
+    int current_line = 1;
+
+    do
+    {
+        fgets(ch, NEWTASKLENGTH, fp);
+        if (feof(fp))
+        {
+            keep_reading = false;
+        }
+        else if (current_line != delete)
+        {
+            fputs(ch, fptemp);
+        }
+        current_line++;
+    } while (keep_reading);
+
+    fclose(fp);
+    fclose(fptemp);
+
+    remove("Tasks.txt");
+    rename(tempfile, "Tasks.txt");
 }
