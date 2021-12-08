@@ -1,3 +1,6 @@
-Gurjit Singh
-20 Pettitt Drive
-Guelph, ON, N1E 7G7
+Software Engineering Fundamentals
+Computer Systems Architecture
+Software Implementation
+Programming Principles
+Linear Algebra
+Scientific Communications

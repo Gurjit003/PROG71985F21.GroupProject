@@ -34,14 +34,14 @@ int main(void)
     }
     case 'b':
     {
-        showAllTasks();
+        displayAllTasks();
         deleteTask();
 
         break;
     }
     case 'c':
     {
-        showAllTasks(); 
+        displayAllTasks();
         updateTask(); 
 
         break;
@@ -54,13 +54,13 @@ int main(void)
     }
     case 'e':
     {
-        printf("feauture hasn't been added yet\n");
+        displayRangeTasks(); 
 
         break;
     }
     case 'f':
     {
-        showAllTasks(); 
+        displayAllTasks();
 
         break;
     }
@@ -96,7 +96,7 @@ void displayMenu()
     \rb) Delete a task\n\
     \rc) Update a task\n\
     \rd) Display specific task\n\
-    \re) \n\
+    \re) Display a range of tasks\n\
     \rf) Display all tasks\n\
     \rg) \n\
     \rh) Quit\n");
@@ -134,7 +134,7 @@ void addNewTask()
 }
 
 
-void showAllTasks()
+void displayAllTasks()
 {
     FILE* fp;
     int ch;
@@ -146,11 +146,16 @@ void showAllTasks()
         exit(1);
     }
 
+    printf("\n"); 
+
     while ((ch = getc(fp)) != EOF)
     {
         putc(ch, stdout);
         count++;
     }
+
+    printf("\n"); 
+
     fclose(fp);
 }
 
@@ -282,4 +287,62 @@ void displaySpecificTask()
 
 
     fclose(fp);
+} 
+
+
+void displayRangeTasks()
+{
+    int line1, line2;
+
+    printf("Enter the line number according to the task from where you would like the tasks to be shown:\n");
+    scanf_s("%d", &line1); 
+
+    printf("Enter the line number according to the task until you would like the tasks to be shown:\n");
+    scanf_s("%d", &line2); 
+
+    if (line1 > line2) 
+    {
+        printf("\nFirst line number cannot be greater than the second line number\n"); 
+    }
+    else if (line1 <= 0 || line2 <= 0)
+    {
+        printf("\nLine numbers cannot be equal to or less than 0\n"); 
+    }
+    else
+    {
+        printf("\n"); 
+
+        FILE* fp = fopen("Tasks.txt", "r");
+        if (fp == NULL)
+        {
+            perror("Unable to open file");
+            exit(1);
+        }
+
+        bool keep_reading = true;
+        int current_line = 1;
+        int i; 
+        char ch[NEWTASKLENGTH];
+
+        do
+        {
+            fgets(ch, NEWTASKLENGTH, fp);
+            if (feof(fp))
+            {
+                keep_reading = false;
+            }
+            else if (current_line == line1)
+            {
+                printf("%s", ch);  
+            }
+            else if (current_line > line1 && current_line <= line2)
+            {
+                printf("%s", ch); 
+            } 
+            current_line++;
+        } while (keep_reading);
+
+
+        fclose(fp); 
+    }
 }
