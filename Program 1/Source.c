@@ -81,12 +81,12 @@ void displayMenu()
     \r Tasks Manager\n\
     \r***************\n\n\
     \rTo choose an option, enter its letter label:\n\
-    \ra) To add a new task\n\
+    \ra) Add a new task\n\
     \rb) Delete a task\n\
     \rc) \n\
     \rd) Display specific task\n\
     \re) \n\
-    \rf) Display all task\n\
+    \rf) Display all tasks\n\
     \rg) Quit\n");
 }
 
@@ -113,7 +113,6 @@ void addNewTask()
     tasksList.newTask = newTask;
 
     fprintf(fp, "%s", tasksList.newTask);
-    fprintf(fp, "\n");
     printf("\nTask added\n");
 
     fclose(fp);
