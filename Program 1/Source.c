@@ -34,32 +34,42 @@ int main(void)
     }
     case 'b':
     {
-        showalltasks();
-        deletetask();
+        showAllTasks();
+        deleteTask();
 
         break;
     }
     case 'c':
     {
         printf("feauture hasn't been added yet\n");
+
         break;
     }
     case 'd':
     {
-        displayspecifictask();
+        displaySpecificTask();
+
         break;
     }
     case 'e':
     {
         printf("feauture hasn't been added yet\n");
+
         break;
     }
     case 'f':
     {
-        showalltasks();
+        showAllTasks(); 
+
         break;
     }
     case 'g':
+    {
+        printf("feauture hasn't been added yet\n");
+
+        break;
+    }
+    case 'h':
     {
         printf("\nBYE!\n");
 
@@ -83,13 +93,14 @@ void displayMenu()
     \rTo choose an option, enter its letter label:\n\
     \ra) Add a new task\n\
     \rb) Delete a task\n\
-    \rc) \n\
+    \rc) Update a task\n\
     \rd) Display specific task\n\
     \re) \n\
     \rf) Display all tasks\n\
-    \rg) Quit\n");
+    \rg) \n\
+    \rh) Quit\n");
 }
-
+//Search for a task
 
 void addNewTask()
 {
@@ -121,7 +132,7 @@ void addNewTask()
 }
 
 
-void showalltasks()
+void showAllTasks()
 {
     FILE* fp;
     int ch;
@@ -142,7 +153,7 @@ void showalltasks()
 }
 
 
-void deletetask()
+void deleteTask()
 {
     FILE* fp, * fptemp;
     char ch[NEWTASKLENGTH];
@@ -184,7 +195,7 @@ void deletetask()
 }
 
 
-void displayspecifictask()
+void displaySpecificTask()
 {
     int line;
 
