@@ -19,23 +19,23 @@
 
 int main(void)
 {
-    displayMenu(); 
+    displayMenu();
 
-    int menuInput = 0;
-    scanf("%c", &menuInput); 
+    char menuInput = 0;
+    scanf("%c", &menuInput);
 
-    switch (menuInput) 
+    switch (menuInput)
     {
     case 'a':
     {
-        addNewTask(); 
+        addNewTask();
 
         break;
     }
     case 'b':
     {
-        showAllTasks();
-        deleteTask();
+        showalltasks();
+        deletetask();
 
         break;
     }
@@ -69,10 +69,10 @@ int main(void)
     {
         printf("\nEnter correct option\n");
     }
-    } 
+    }
 
-	return 0; 
-} 
+    return 0;
+}
 
 
 void displayMenu()
@@ -81,19 +81,19 @@ void displayMenu()
     \r Tasks Manager\n\
     \r***************\n\n\
     \rTo choose an option, enter its letter label:\n\
-    \ra) Add a new task\n\
+    \ra) To add a new task\n\
     \rb) Delete a task\n\
     \rc) \n\
     \rd) Display specific task\n\
     \re) \n\
     \rf) Display all task\n\
-    \rg) Quit\n"); 
+    \rg) Quit\n");
 }
 
 
 void addNewTask()
 {
-    TASKS tasksList; 
+    TASKS tasksList;
 
     FILE* fp = fopen("Tasks.txt", "a");
 
@@ -103,26 +103,26 @@ void addNewTask()
         exit(EXIT_FAILURE);
     }
 
-    char* newTask[NEWTASKLENGTH]; 
+    char* newTask[NEWTASKLENGTH];
 
-    fputs("\nEnter the task information you would like to add:\n", stdout); 
-    fgets(newTask, NEWTASKLENGTH, stdin);
-    fgets(newTask, NEWTASKLENGTH, stdin);
+    printf("\nEnter the task information you would like to add:\n");
+    fgets(newTask, sizeof(newTask), stdin);
+    fgets(newTask, sizeof(newTask), stdin);
+    //scanf("%s", newTask, NEWTASKLENGTH);
     
-    tasksList.newTask = newTask; 
+    tasksList.newTask = newTask;
 
-    printf("%s", tasksList.newTask);
-    //fprintf(fp, "%s", tasksList.newTask); 
-    fprintf(fp, "\n"); 
-    printf("\nTask added\n"); 
+    fprintf(fp, "%s", tasksList.newTask);
+    fprintf(fp, "\n");
+    printf("\nTask added\n");
 
-    fclose(fp); 
+    fclose(fp);
 
     return 0;
 }
 
 
-void showAllTasks()
+void showalltasks()
 {
     FILE* fp;
     int ch;
@@ -143,7 +143,7 @@ void showAllTasks()
 }
 
 
-void deleteTask()
+void deletetask()
 {
     FILE* fp, * fptemp;
     char ch[NEWTASKLENGTH];
@@ -187,7 +187,7 @@ void deleteTask()
 
 void displayspecifictask()
 {
-    int line; 
+    int line;
 
     printf("what like of task will you like to be shown: ");
     scanf_s("%d", &line);
@@ -219,5 +219,4 @@ void displayspecifictask()
 
 
     fclose(fp);
-  
 }
