@@ -3,8 +3,6 @@
 //Gurjit Singh and David Oladimeji - December 7 - 2021 
 
 
-//original file: tasksSaveFile.txt
-
 #define _CRT_SECURE_NO_WARNINGS 
 
 #include <stdio.h> 
@@ -23,22 +21,21 @@ int main(void)
 {
     displayMenu(); 
 
-    char menuInput = 0;
+    int menuInput = 0;
     scanf("%c", &menuInput); 
 
     switch (menuInput) 
     {
     case 'a':
     {
-        addNewTask();
-        //addNewTask();
+        addNewTask(); 
 
         break;
     }
     case 'b':
     {
-        showalltasks();
-        deletetask();
+        showAllTasks();
+        deleteTask();
 
         break;
     }
@@ -64,7 +61,7 @@ void displayMenu()
     \r Tasks Manager\n\
     \r***************\n\n\
     \rTo choose an option, enter its letter label:\n\
-    \ra) To add a new task\n\
+    \ra) Add a new task\n\
     \rb) Delete a task\n\
     \rf) Quit\n"); 
 }
@@ -84,21 +81,14 @@ void addNewTask()
 
     char* newTask[NEWTASKLENGTH]; 
 
-    //int bookingNamesNum;
-    //char* firstName = malloc(sizeof(char) * (bookingStatusLength + 1));
-    //char* lastName = malloc(sizeof(char) * (bookingStatusLength + 1));
-
-    printf("\nEnter the task information you would like to add:\n"); 
-    //fgets(newTask, sizeof(newTask), stdin);
-    scanf("%s", newTask, NEWTASKLENGTH); 
-    //while ((newTask = getchar()) != '\n' && newTask != EOF);
-    /* while (fgets(newTask, sizeof(newTask), stdin) != EOF)
-    {
-        fgets(newTask, sizeof(newTask), stdin); 
-    } */ 
+    fputs("\nEnter the task information you would like to add:\n", stdout); 
+    fgets(newTask, NEWTASKLENGTH, stdin);
+    fgets(newTask, NEWTASKLENGTH, stdin);
+    
     tasksList.newTask = newTask; 
 
-    fprintf(fp, "%s", tasksList.newTask); 
+    printf("%s", tasksList.newTask);
+    //fprintf(fp, "%s", tasksList.newTask); 
     fprintf(fp, "\n"); 
     printf("\nTask added\n"); 
 
@@ -107,7 +97,8 @@ void addNewTask()
     return 0;
 }
 
-void showalltasks()
+
+void showAllTasks()
 {
     FILE* fp;
     int ch;
@@ -126,7 +117,9 @@ void showalltasks()
     }
     fclose(fp);
 }
-void deletetask()
+
+
+void deleteTask()
 {
     FILE* fp, * fptemp;
     char ch[NEWTASKLENGTH];

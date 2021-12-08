@@ -28,5 +28,5 @@ typedef struct tasks {
 
 void displayMenu(); 
 void addNewTask(); 
-void showalltasks();
-void deletetask(); 
+void showAllTasks();
+void deleteTask(); 
