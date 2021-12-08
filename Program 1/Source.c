@@ -122,7 +122,7 @@ void addNewTask()
     } */ 
     tasksList.newTask = newTask; 
 
-    fprintf(fp, "%s", tasksList.newTask); 
+    fprintf(fp, "-> %s", tasksList.newTask); 
     fprintf(fp, "\n"); 
     printf("\nTask added\n"); 
 
