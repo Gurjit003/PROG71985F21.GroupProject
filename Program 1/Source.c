@@ -41,7 +41,8 @@ int main(void)
     }
     case 'c':
     {
-        printf("feauture hasn't been added yet\n");
+        showAllTasks(); 
+        updateTask(); 
 
         break;
     }
@@ -110,8 +111,8 @@ void addNewTask()
 
     if (fp == NULL)
     {
-        printf("Can't open file %s\n", fp);
-        exit(EXIT_FAILURE);
+        perror("Unable to open file");
+        exit(1);
     }
 
     char* newTask[NEWTASKLENGTH];
@@ -119,6 +120,7 @@ void addNewTask()
     printf("\nEnter the task information you would like to add:\n");
     fgets(newTask, sizeof(newTask), stdin);
     fgets(newTask, sizeof(newTask), stdin);
+    //scanf_s("%s", newTask); 
     //scanf("%s", newTask, NEWTASKLENGTH);
     
     tasksList.newTask = newTask;
@@ -140,8 +142,8 @@ void showAllTasks()
 
     if ((fp = fopen("Tasks.txt", "r")) == NULL)
     {
-        printf("Can't open file\n");
-        exit(EXIT_FAILURE);
+        perror("Unable to open file");
+        exit(1);
     }
 
     while ((ch = getc(fp)) != EOF)
@@ -163,8 +165,7 @@ void deleteTask()
     strcpy(tempfile, "temp____");
     strcat(tempfile, "Tasks_txt");
 
-    printf("\n");
-    printf("which line would you like to delete: ");
+    printf("\nEnter the line number according to the task you would like to delete:\n");
     scanf_s("%d", &delete);
 
     fp = fopen("Tasks.txt", "r");
@@ -195,11 +196,63 @@ void deleteTask()
 }
 
 
+void updateTask()
+{
+    FILE* fp, * fptemp;
+    char ch[NEWTASKLENGTH];
+    char newCh[NEWTASKLENGTH];
+    int update = 0;
+    char tempfile[NEWTASKLENGTH];
+
+    strcpy(tempfile, "temp____");
+    strcat(tempfile, "Tasks_txt");
+
+    printf("\nEnter the line number according to the task you would like to update:\n");
+    scanf_s("%d", &update);
+
+    printf("\nEnter the new information for the task:\n"); 
+    fgets(newCh, sizeof(newCh), stdin); 
+    fgets(newCh, sizeof(newCh), stdin); 
+
+    fp = fopen("Tasks.txt", "r");
+    fptemp = fopen(tempfile, "w");
+
+    bool keep_reading = true;
+    int current_line = 1;
+
+    do
+    {
+        fgets(ch, NEWTASKLENGTH, fp);
+        if (feof(fp))
+        {
+            keep_reading = false;
+        }
+        else if (current_line != update)
+        {
+            fputs(ch, fptemp);
+        }
+        else if (current_line == update)
+        {
+            fputs(newCh, fptemp);
+        }
+        current_line++;
+    } while (keep_reading);
+
+    printf("\nTask updated\n"); 
+
+    fclose(fp);
+    fclose(fptemp);
+
+    remove("Tasks.txt");
+    rename(tempfile, "Tasks.txt");
+}
+
+
 void displaySpecificTask()
 {
     int line;
 
-    printf("what like of task will you like to be shown: ");
+    printf("Enter the line number according to the task you would like to be shown:\n");
     scanf_s("%d", &line);
 
     FILE* fp = fopen("Tasks.txt", "r");

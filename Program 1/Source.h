@@ -30,4 +30,5 @@ void displayMenu();
 void addNewTask(); 
 void showAllTasks();
 void deleteTask();
+void updateTask(); 
 void displaySpecificTask();
