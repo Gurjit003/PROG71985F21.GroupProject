@@ -145,6 +145,7 @@
     <ClInclude Include="Source.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="README.txt" />
     <Text Include="Tasks.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
