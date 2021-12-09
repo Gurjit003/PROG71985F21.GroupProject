@@ -12,7 +12,6 @@
 #include <stdbool.h> 
 
 
-#define NUMOFTASKS 10 
 #define NEWTASKLENGTH 50 
 #define FORLOOPEND 20 
 
@@ -98,15 +97,13 @@ void displayMenu()
     \rd) Display specific task\n\
     \re) Display a range of tasks\n\
     \rf) Display all tasks\n\
-    \rg) \n\
+    \rg) Search for a task\n\
     \rh) Quit\n");
 }
-//Search for a task
+
 
 void addNewTask()
 {
-    TASKS tasksList;
-
     FILE* fp = fopen("Tasks.txt", "a");
 
     if (fp == NULL)
@@ -123,9 +120,7 @@ void addNewTask()
     //scanf_s("%s", newTask); 
     //scanf("%s", newTask, NEWTASKLENGTH);
     
-    tasksList.newTask = newTask;
-
-    fprintf(fp, "%s", tasksList.newTask);
+    fprintf(fp, "%s", newTask);
     printf("\nTask added\n");
 
     fclose(fp);
@@ -153,8 +148,6 @@ void displayAllTasks()
         putc(ch, stdout);
         count++;
     }
-
-    printf("\n"); 
 
     fclose(fp);
 }
@@ -192,6 +185,8 @@ void deleteTask()
         }
         current_line++;
     } while (keep_reading);
+
+    printf("\nTask deleted\n");
 
     fclose(fp);
     fclose(fptemp);
@@ -257,7 +252,7 @@ void displaySpecificTask()
 {
     int line;
 
-    printf("Enter the line number according to the task you would like to be shown:\n");
+    printf("\nEnter the line number according to the task you would like to be shown:\n");
     scanf_s("%d", &line);
 
     FILE* fp = fopen("Tasks.txt", "r");
@@ -270,6 +265,8 @@ void displaySpecificTask()
     bool keep_reading = true;
     int current_line = 1;
     char ch[NEWTASKLENGTH];
+
+    printf("\n"); 
 
     do
     {
@@ -294,10 +291,10 @@ void displayRangeTasks()
 {
     int line1, line2;
 
-    printf("Enter the line number according to the task from where you would like the tasks to be shown:\n");
+    printf("\nEnter the line number according to the task from where you would like the tasks to be shown:\n");
     scanf_s("%d", &line1); 
 
-    printf("Enter the line number according to the task until you would like the tasks to be shown:\n");
+    printf("\nEnter the line number according to the task until you would like the tasks to be shown:\n");
     scanf_s("%d", &line2); 
 
     if (line1 > line2) 

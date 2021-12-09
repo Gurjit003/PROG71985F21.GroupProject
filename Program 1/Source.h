@@ -6,26 +6,6 @@
 #pragma once
 
 
-/* typedef struct tasksFormat {
-    char* firstWord;
-    char* secondWord;
-} TASKSFORMAT; */ 
-
-typedef struct tasks {
-    char* firstTask; 
-    char* secondTask; 
-    char* thirdTask; 
-    char* fourthTask; 
-    char* fifthTask; 
-    char* sixthTask; 
-    char* seventhTask; 
-    char* eighthTask; 
-    char* ninthTask; 
-    char* tenthTask; 
-    char* newTask; 
-} TASKS; 
-
-
 void displayMenu(); 
 void addNewTask(); 
 void displayAllTasks();
