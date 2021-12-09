@@ -13,4 +13,4 @@ void deleteTask();
 void updateTask(); 
 void displaySpecificTask(); 
 void displayRangeTasks(); 
-void searchfortask();
+void searchForTask();
