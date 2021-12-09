@@ -346,7 +346,7 @@ void displayRangeTasks()
 
 void searchfortask()
 {
-    char wrd[256], buffer[256];
+    char wrd[NEWTASKLENGTH], buffer[NEWTASKLENGTH];
     int n, m, i, j, line;
 
     FILE* fp;
@@ -359,7 +359,7 @@ void searchfortask()
 
     line = 0;
     
-    while (fgets(buffer, 256, fp) != NULL) 
+    while (fgets(buffer, NEWTASKLENGTH, fp) != NULL) 
     {
         i = 0;
         n = strlen(buffer);
