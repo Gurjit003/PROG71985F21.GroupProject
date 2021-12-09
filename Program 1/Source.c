@@ -13,7 +13,6 @@
 
 
 #define NEWTASKLENGTH 50 
-#define FORLOOPEND 20 
 
 
 int main(void)
@@ -65,7 +64,7 @@ int main(void)
     }
     case 'g':
     {
-       searchfortask(); 
+        searchForTask();
 
         break;
     }
@@ -117,8 +116,6 @@ void addNewTask()
     printf("\nEnter the task information you would like to add:\n");
     fgets(newTask, sizeof(newTask), stdin);
     fgets(newTask, sizeof(newTask), stdin);
-    //scanf_s("%s", newTask); 
-    //scanf("%s", newTask, NEWTASKLENGTH);
     
     fprintf(fp, "%s", newTask);
     printf("\nTask added\n");
@@ -344,7 +341,8 @@ void displayRangeTasks()
     }
 }
 
-void searchfortask()
+
+void searchForTask()
 {
     char wrd[256], buffer[256];
     int n, m, i, j, line;
@@ -352,7 +350,7 @@ void searchfortask()
     FILE* fp;
     fp = fopen("Tasks.txt", "r");
 
-    printf("Enter the word according  to the first word of the task: ");
+    printf("Enter the word according to the first word of the task: ");
     scanf("%s", wrd, NEWTASKLENGTH);
 
     m = strlen(wrd); 
