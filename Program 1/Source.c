@@ -352,7 +352,7 @@ void searchfortask()
     FILE* fp;
     fp = fopen("Tasks.txt", "r");
 
-    printf("Enter the word you want to search in the file: ");
+    printf("Enter the word according  to the first word of the task: ");
     scanf("%s", wrd, NEWTASKLENGTH);
 
     m = strlen(wrd); 
