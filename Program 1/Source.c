@@ -350,13 +350,15 @@ void searchForTask()
     FILE* fp;
     fp = fopen("Tasks.txt", "r");
 
-    printf("Enter the word according to the first word of the task: ");
+    printf("\nEnter the word according to the first word of the task:\n");
     scanf("%s", wrd, NEWTASKLENGTH);
 
     m = strlen(wrd); 
 
     line = 0;
     
+    printf("\n"); 
+
     while (fgets(buffer, NEWTASKLENGTH, fp) != NULL) 
     {
         i = 0;
@@ -386,4 +388,4 @@ void searchForTask()
     }
 
     fclose(fp);
-}
+} 
